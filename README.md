@@ -32,7 +32,9 @@ CSV file "CAMS_data_04_10_2023_00_25.csv" created successfully.
 
 # Request CAS statement from CAMS
 - To request your CAS file, first open the CAMS website by clicking this [link](https://www.camsonline.com/Investors/Statements/Consolidated-Account-Statement)
+  
 !['CAS1.1.png'](/img/CAS1.1.png)
+
 - Next, fill the CAS Request form by selecting the following options:
     - Statement Type: *Detailed*
     - Period: Specific Period
@@ -41,8 +43,13 @@ CSV file "CAMS_data_04_10_2023_00_25.csv" created successfully.
     - Folio Listing: With zero balance folios
     Enter your registered email address and create a password for your file (which you can easily remember).
     Then, click Submit.
+
 !['CAS2.1.png'](/img/CAS2.1.png)
+
 - You will shortly receive an email from CAMSOnline with your CAS statement attached as a PDF file. Download the CAS file attachment pdf.
+  
 !['CAS3.1.png'](/img/CAS3.1.png)
+
+
 
 
