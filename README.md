@@ -1,10 +1,17 @@
+------------------
 # CAMSPdfExtractor
+
 Tool/Library that will extract CAMS Mutual fund PDF statement (India) data into either
 - csv file
 - dataframe
 - json string
 - list of dicts
 
+
+This tool was designed after looking at how [@SudheerNotes](https://github.com/SudheerNotes) implemented his tool [cams2csv](https://github.com/SudheerNotes/cams2csv).
+
+------------------
+------------------
 ## How to use
 First you need to request CAMS detailed Mutual Fund statement from CamsOnline ([How To?](#request-cas-statement-from-cams))
 
@@ -38,8 +45,9 @@ Sample CSV file format
 
 !['samplecsv.png'](/img/samplecsv.png)
 
+------------------
 
-
+------------------
 ## Request CAS statement from CAMS
 - To request your CAS file, first open the CAMS website by clicking this [link](https://www.camsonline.com/Investors/Statements/Consolidated-Account-Statement)
   
@@ -60,7 +68,4 @@ Sample CSV file format
 - You will shortly receive an email from CAMSOnline with your CAS statement attached as a PDF file. Download the CAS file attachment pdf.
   
 !['CAS3.1.png'](/img/CAS3.1.png)
-
-
-
 
