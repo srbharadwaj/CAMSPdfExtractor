@@ -30,8 +30,8 @@
 #  >>> 
 #  
 #
-# This piece of library was inspired looking at the initial tool developed by @SudheerNotes:
-#  * https://github.com/SudheerNotes/cams2csv/
+# This tool was designed after looking at how @SudheerNotes implemented 
+# his tool cams2csv (https://github.com/SudheerNotes/cams2csv/)
 #
 #
 # Copyright (c) 2023, Suhas Bharadwaj <@srbharadwaj>
@@ -189,9 +189,9 @@ class _ProcessTextFile:
                 nav = m.groupdict().get("nav")
                 balance_units = m.groupdict().get("unitbalance")
 
-                date_format = "%d-%b-%Y"  # Specify the format of the input date string
-                # Convert the string to a datetime object
-                date_obj = datetime.strptime(date, date_format)
+                # date_format = "%d-%b-%Y"  # Specify the format of the input date string
+                # # Convert the string to a datetime object
+                # date_obj = datetime.strptime(date, date_format)
                 t = _FundDetails(
                     folio_num=folio_num,
                     fund_name=fund_name,
