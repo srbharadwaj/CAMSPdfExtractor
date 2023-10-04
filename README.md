@@ -1,6 +1,15 @@
 ------------------
 # CAMSPdfExtractor
+------------------
 
+- [Introduction](#introduction)
+- [How to use](#how-to-use)
+- [Request CAS statement from CAMS](#request-cas-statement-from-cams)
+- [TODO](#todo)
+
+------------------
+## Introduction
+------------------
 Tool/Library that will extract CAMS Mutual fund PDF statement (India) data into either
 - csv file
 - dataframe
@@ -45,6 +54,10 @@ Sample CSV file format
 
 !['samplecsv.png'](/img/samplecsv.png)
 
+
+- You can set the `output_format` for `get_pdf_data` method to be `dicts` or `json` or `df` incase you want to further process the data in your applications
+- `output_format`  can be set to `csv` if you want to use it for other tools developed by say [freefincal](https://freefincal.com/track-your-mutual-fund-and-stock-investments-with-this-google-sheet/) or others you might still need to modify the csv according to the tool, but that should be a trivial job in my opinion 
+
 ------------------
 
 ------------------
@@ -69,3 +82,9 @@ Sample CSV file format
   
 !['CAS3.1.png'](/img/CAS3.1.png)
 
+------------------
+
+------------------
+## TODO
+- Add Scheme code automatically by looking at the ISIN
+- Add a GUI if needed to get CSV data instead of executing via cmdline
