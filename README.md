@@ -35,11 +35,11 @@ Once you have the PDF downloaded to your machine, you can use the library to ext
 >>> out = pp.get_pdf_data(output_format="df")  # output_format can be either "dicts", "csv", "json", "df"
 Processing PDF. Please wait...
 >>> print(out)
-fund_name          isin         folio_num         date   txn     amount     units       nav balance_units
-0    Aditya Birla Sun Life Liquid Fund - Growth-Dir...  INF209K01VA3        1039837274  26-Apr-2020   Buy  360000.00  1122.052  320.8408       1122.052
-...           ...               ...          ...   ...        ...       ...       ...            ...
-655        UTI Nifty Next 50 Index Fund - Direct Plan   INF789FC12T1  599321413667 / 0  26-Jun-2023   Buy   99995.00  6358.740   15.7256      86737.464
-[656 rows x 9 columns]
+                                             fund_name          isin scheme_code         folio_num  ...     amount     units       nav balance_units
+0    Aditya Birla Sun Life Liquid Fund - Growth-Dir...  INF209K01VA3      119568        1039837274  ...  360000.00  1122.052  320.8408      1122.052
+..                                                 ...           ...         ...               ...  ...        ...       ...       ...           ...
+655        UTI Nifty Next 50 Index Fund - Direct Plan   INF789FC12T1      143341  599321413667 / 0  ...   99995.00  6358.740   15.7256     86737.464
+[656 rows x 10 columns]
 >>> 
 >>> 
 >>> # If you want to dump it to csv file, you do like below
@@ -86,5 +86,4 @@ Sample CSV file format
 
 ------------------
 ## TODO
-- Add Scheme code automatically by looking at the ISIN
 - Add a GUI if needed to get CSV data instead of executing via cmdline

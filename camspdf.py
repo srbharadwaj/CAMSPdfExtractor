@@ -70,6 +70,7 @@ import json
 import traceback
 import pdfplumber
 import pandas as pd
+import requests
 
 
 basedir = os.path.dirname(__file__)
@@ -84,9 +85,60 @@ FNAME_ISIN = r"^\S+\-(?P<fund_name>.*)\s*\-\s*ISIN:\s+(?P<isin>[A-Z,0-9]+)(\(?P<
 
 
 @dataclass
+class _EachLine:
+    scheme_code: str
+    isin_growth: str
+    isin_div_reinv: str
+    scheme_name: str
+    nav: str
+    date: str
+
+
+class _LatestNav:
+    def __init__(self) -> None:
+        self.alldata = []
+        url = "https://portal.amfiindia.com/spages/NAVopen.txt"
+        response = requests.get(url, timeout=60)
+        if response.status_code == 200:
+            # Parse the HTML content of the page
+            html_content = response.text
+            # print(html_content)
+            alllines = html_content.splitlines()
+            # print(len(alllines))
+            # print(alllines[0])
+            self.process(alllines)
+        else:
+            print(
+                f"Failed to retrieve the latest nav page. Status code: {response.status_code}"
+            )
+            # You can handle errors or exit the script here
+
+    def process(self, alllines):
+        for eachline in alllines:
+            if ";" in eachline and "Scheme Code" not in eachline:
+                alltokens = eachline.split(";")
+                a = _EachLine(
+                    scheme_code=alltokens[0],
+                    isin_growth=alltokens[1],
+                    isin_div_reinv=alltokens[2],
+                    scheme_name=alltokens[3],
+                    nav=alltokens[4],
+                    date=alltokens[5],
+                )
+                self.alldata.append(a)
+
+    def get_sch_code(self, isin):
+        for a in self.alldata:
+            if a.isin_growth == isin or a.isin_div_reinv == isin:
+                return a.scheme_code
+        return ""
+
+
+@dataclass
 class _FundDetails:
     fund_name: str
     isin: str
+    scheme_code: str
     folio_num: str
     date: str
     txn: str
@@ -102,6 +154,7 @@ class _ProcessTextFile:
         alllines="text.txt",
     ) -> None:
         self.alldata = []
+        self.lnav = _LatestNav()
         if alllines == "text.txt":
             with open(alllines, "r") as f:
                 self.alllines = f.readlines()
@@ -168,6 +221,7 @@ class _ProcessTextFile:
                     folio_num=folio_num,
                     fund_name=fund_name,
                     isin=isin,
+                    scheme_code=self.lnav.get_sch_code(isin),
                     date=date,
                     txn=txn,
                     amount=amount,
@@ -196,6 +250,7 @@ class _ProcessTextFile:
                     folio_num=folio_num,
                     fund_name=fund_name,
                     isin=isin,
+                    scheme_code=self.lnav.get_sch_code(isin),
                     date=date,
                     txn=txn,
                     amount=float(amtstring),
@@ -222,6 +277,7 @@ class _ProcessTextFile:
                     folio_num=folio_num,
                     fund_name=fund_name,
                     isin=isin,
+                    scheme_code=self.lnav.get_sch_code(isin),
                     date=date,
                     txn=txn,
                     amount=amount,
